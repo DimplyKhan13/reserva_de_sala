@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Cadastro - Reserva de Salas</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <h1>Cadastro</h1>
+        <h2>Reserva de Salas - Negócios S/A</h2>
+        
+        <p>Preencha o formulário a seguir com os seus dados.</p>
+        
+        <span th:text="${error}"></span>
+
+        <form action="#"
+            method="post"
+            th:action="@{/usuario/cadastro}"
+            th:object="${usuario}">
+
+            <label>Nome</label>
+            <input placeholder="Seu nome completo"
+                id="nome"
+                th:field="*{nome}">
+            <br>
+            <br>
+
+            <label>CPF</label>
+            <input placeholder="Apenas Numeros"
+                id="cpf"
+                th:field="*{cpf}">
+            <br>
+            <br>
+
+            <label>Contato</label>
+            <input placeholder="(xx)xxxxx-xxxx"
+                id="contato"
+                th:field="*{contato}">
+
+            <input button type="submit" value="Cadastrar">
+        </form>
+
+    </body>
+</html>

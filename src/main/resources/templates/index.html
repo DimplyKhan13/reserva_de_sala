@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Reserva de Salas</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <h1>Reserva de Salas - Negócios S/A</h1>
+        
+        <span th:text="${param.success}"></span>
+        <span th:text="${error}"></span>
+        <span th:text="${success}"></span>
+
+        <p>Siga os passos apresentados em nosso site para fazer uma reserva.<br> O caminho é simples, mas se houver alguma dificuldade, entre em contato com o time de TI e estaremos prontos para ajuda-lo.</p>
+        
+        <h3>Se esta é sua primeira reserva, <a href="/usuario/cadastro">cadastre-se</a>.</h3>
+
+        <h2>Caso já tenha realizado uma reserva anteriormente, complete o formulário abaixo:</h2>
+
+        <form action="#"
+            method="post"
+            th:action="@{/reserva/disponibilidade}"
+            th:object="${disponibilidade}">
+
+            <label>CPF</label>
+            <input placeholder="Apenas Numeros"
+                id="cpf"
+                th:field="*{cpf}">
+            <br>
+            <br>
+
+            <label>Dia da Semana</label>
+            <select id="dia"
+                th:field="*{dia}">
+                <option value="Segunda-Feira">Segunda-Feira</option>
+                <option value="Terça-Feira">Terça-Feira</option>
+                <option value="Quarta-Feira">Quarta-Feira</option>
+                <option value="Quinta-Feira">Quinta-Feira</option>
+                <option value="Sexta-Feira">Sexta-Feira</option>
+            </select>
+            <br>
+            <br>
+
+            <label>Horário</label>
+            <Select id="hora"
+                th:field="*{hora}">
+                <option value="08:00">08:00</option>
+                <option value="09:00">09:00</option>
+                <option value="10:00">10:00</option>
+                <option value="11:00">11:00</option>
+                <option value="12:00">12:00</option>
+                <option value="13:00">13:00</option>
+                <option value="14:00">14:00</option>
+                <option value="15:00">15:00</option>
+                <option value="16:00">16:00</option>
+                <option value="17:00">17:00</option>
+            </Select>
+            <br>
+            <br>
+
+            <label>Participantes</label>
+            <input placeholder="12"
+                id="participantes"
+                th:field="*{participantes}">
+            <br>
+            <br>
+
+            <input type="submit" value="Verificar Disponibilidade">
+            
+        </form>
+
+        <p>Após enviar o formulário, será possível verificar as salas disponíveis conforme a solicitação.</p>
+        <br>
+
+        <h3> Verifique as suas reservas:</h3>
+        <form action="#"
+            method="GET"
+            th:action="@{/reserva/usuario}"
+            th:object="${usuario}">
+
+            <label>CPF</label>
+            <input type="text" name="cpf" th:field="*{cpf}" placeholder="Apenas Numeros">
+            <br>
+            
+            <input type="submit" value="Ver Reservas">
+        </form>
+
+
+        <h2>Sobre as nossas salas:</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Capacidade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="salas : ${salas}">
+                    <td th:text="${salas.nome}"></td>
+                    <td th:text="${salas.capacidade}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

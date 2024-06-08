@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Minhas Reservas - Reserva de Salas</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <h1>Minhas Reservas</h1>
+        <h2>Reserva de Salas - Negócios S/A</h2>
+
+        <span th:text="${param.success}"></span>
+        <span th:text="${error}"></span>
+        
+        <p><strong th:text="${usuario.nome}"></strong>, suas reservas são:</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Dia</th>
+                    <th>Hora</th>
+                    <th>Sala</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="reserva : ${reservas}">
+                    <td th:text="${reserva.dia}"></td>
+                    <td th:text="${reserva.hora}"></td>
+                    <th:block th:with="check=${reserva.idSala}">
+                        <td th:text="${salas.^[id == #root.check].nome}"></td>
+                    </th:block>
+                    <td>
+                        <form th:action="@{/reserva/remover/{id}(id = ${reserva.id})}" th:method="Delete" th:object="${reserva}">
+                            <button type="submit">Remover</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <br>
+        <p>Por favor, mantenha seus dados atualizados para que possamos encontrá-lo.</p>
+        <form action="#" 
+            th:method="PUT" 
+            th:action="@{/usuario/atualizar/{cpf}(cpf = ${usuario.cpf})}"
+            th:object="${usuario}">
+
+            <input type="hidden" name="cpf" th:field="*{cpf}"/>
+            
+            <label>Nome</label>
+            <input name="nome" th:field="*{nome}">
+            <br>
+            <br>
+
+            <label>Contato</label>
+            <input name="contato" th:field="*{contato}">
+            <br>
+            <br>
+
+            <input type="submit" value="Atualizar">
+        </form>
+    </body>
+</html>

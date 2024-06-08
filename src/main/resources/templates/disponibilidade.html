@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Disponibilidade - Reserva de Salas</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <h1>Disponibilidade</h1>
+        <h2>Reserva de Salas - Negócios S/A</h2>
+
+        <span th:text="${error}"></span>
+
+        <p>Qual sala você gostaria de reservar para <strong th:text="${disponibilidade.dia}"></strong> as <strong th:text="${disponibilidade.hora}"></strong>?</p>
+        <form action="#"
+            method="post"
+            th:action="@{/reserva/sala}"
+            th:object="${reserva}">
+
+            <select id="sala" name="sala" th:field="*{idSala}">
+                <option th:each="sala : ${salasDisponiveis}"
+                    th:value="${sala.id}"
+                    th:text="${sala.nome}">
+                </option>
+            </select>
+            <br>
+            <br>
+            
+            <label>CPF</label>
+            <input type="text" th:name="cpfUsuario" th:value="${disponibilidade.cpf}" readonly/>
+            <br>
+
+            <label>Dia e Hora</label>
+            <input type="text" th:name="dia" th:value="${disponibilidade.dia}" readonly/>
+            <input type="text" th:name="hora" th:value="${disponibilidade.hora}" readonly/>
+            <br>
+
+            <button type="submit">Reservar para o CPF <strong th:text="${disponibilidade.cpf}"></strong></button>
+        </form>
+
+        <p>Se preferir, veja mais informações sobre as salas disponíveis:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Capacidade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="salasDisponiveis : ${salasDisponiveis}">
+                    <td th:text="${salasDisponiveis.nome}"></td>
+                    <td th:text="${salasDisponiveis.capacidade}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
