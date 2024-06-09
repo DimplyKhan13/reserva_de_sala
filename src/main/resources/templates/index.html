@@ -4,104 +4,118 @@
         <meta charset="UTF-8">
         <title>Reserva de Salas</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" th:href="@{/css/default.css}">
     </head>
     <body>
-        <h1>Reserva de Salas - Negócios S/A</h1>
-        
-        <span th:text="${param.success}"></span>
-        <span th:text="${error}"></span>
-        <span th:text="${success}"></span>
+        <div id="header">
+            <h1><span>Negócios S/A</span> - Reserva de Salas</h1>
+        </div>
 
-        <p>Siga os passos apresentados em nosso site para fazer uma reserva.<br> O caminho é simples, mas se houver alguma dificuldade, entre em contato com o time de TI e estaremos prontos para ajuda-lo.</p>
-        
-        <h3>Se esta é sua primeira reserva, <a href="/usuario/cadastro">cadastre-se</a>.</h3>
+        <div id="goodAlerts">
+            <span th:text="${param.success}"></span>
+            <span th:text="${success}"></span>
+        </div>
+        <div id="badAlerts">
+            <span th:text="${error}"></span>
+        </div>
 
-        <h2>Caso já tenha realizado uma reserva anteriormente, complete o formulário abaixo:</h2>
+        <div id="container">
+            <div id="inner">
+                <div id="content">
+                    <h1>Bem vindo(a) ao sistema de Reserva de Salas</h1>
+                    <p>Siga os passos apresentados em nosso site para fazer uma reserva.<br> O caminho é simples, mas se houver alguma dificuldade, entre em contato com o time de TI e estaremos prontos para ajuda-lo.</p>
+                    
+                    <p>Se esta é sua primeira reserva, <a href="/usuario/cadastro">cadastre-se</a>.</p>
 
-        <form action="#"
-            method="post"
-            th:action="@{/reserva/disponibilidade}"
-            th:object="${disponibilidade}">
+                    <h1>Caso já tenha se cadastrado, complete o formulário abaixo:</h1>
 
-            <label>CPF</label>
-            <input placeholder="Apenas Numeros"
-                id="cpf"
-                th:field="*{cpf}">
-            <br>
-            <br>
+                    <form action="#"
+                        method="post"
+                        th:action="@{/reserva/disponibilidade}"
+                        th:object="${disponibilidade}">
+                        <div id="inputLine">
+                            <label>CPF</label>
+                            <input class="text" placeholder="Apenas Numeros"
+                                id="cpf"
+                                th:field="*{cpf}">
+                        </div>
+                        <div id="inputLine">
+                            <label>Dia da Semana</label>
+                            <select id="dia"
+                                th:field="*{dia}">
+                                <option value="Segunda-Feira">Segunda-Feira</option>
+                                <option value="Terça-Feira">Terça-Feira</option>
+                                <option value="Quarta-Feira">Quarta-Feira</option>
+                                <option value="Quinta-Feira">Quinta-Feira</option>
+                                <option value="Sexta-Feira">Sexta-Feira</option>
+                            </select>
+                        </div>
+                        <div id="inputLine">
+                            <label>Horário</label>
+                            <Select id="hora"
+                                th:field="*{hora}">
+                                <option value="08:00">08:00</option>
+                                <option value="09:00">09:00</option>
+                                <option value="10:00">10:00</option>
+                                <option value="11:00">11:00</option>
+                                <option value="12:00">12:00</option>
+                                <option value="13:00">13:00</option>
+                                <option value="14:00">14:00</option>
+                                <option value="15:00">15:00</option>
+                                <option value="16:00">16:00</option>
+                                <option value="17:00">17:00</option>
+                            </Select>
+                        </div>
+                        <div id="inputLine">
+                            <label>Participantes</label>
+                            <input class="text" placeholder="12"
+                                id="participantes"
+                                th:field="*{participantes}">
+                        </div>
+                        <div id="inputLine">
+                            <input class="button" type="submit" value="Verificar Disponibilidade">
+                        </div>
+                    </form>
 
-            <label>Dia da Semana</label>
-            <select id="dia"
-                th:field="*{dia}">
-                <option value="Segunda-Feira">Segunda-Feira</option>
-                <option value="Terça-Feira">Terça-Feira</option>
-                <option value="Quarta-Feira">Quarta-Feira</option>
-                <option value="Quinta-Feira">Quinta-Feira</option>
-                <option value="Sexta-Feira">Sexta-Feira</option>
-            </select>
-            <br>
-            <br>
+                    <p>* Após enviar o formulário, será possível verificar as salas disponíveis conforme a solicitação.</p>
 
-            <label>Horário</label>
-            <Select id="hora"
-                th:field="*{hora}">
-                <option value="08:00">08:00</option>
-                <option value="09:00">09:00</option>
-                <option value="10:00">10:00</option>
-                <option value="11:00">11:00</option>
-                <option value="12:00">12:00</option>
-                <option value="13:00">13:00</option>
-                <option value="14:00">14:00</option>
-                <option value="15:00">15:00</option>
-                <option value="16:00">16:00</option>
-                <option value="17:00">17:00</option>
-            </Select>
-            <br>
-            <br>
-
-            <label>Participantes</label>
-            <input placeholder="12"
-                id="participantes"
-                th:field="*{participantes}">
-            <br>
-            <br>
-
-            <input type="submit" value="Verificar Disponibilidade">
-            
-        </form>
-
-        <p>Após enviar o formulário, será possível verificar as salas disponíveis conforme a solicitação.</p>
-        <br>
-
-        <h3> Verifique as suas reservas:</h3>
-        <form action="#"
-            method="GET"
-            th:action="@{/reserva/usuario}"
-            th:object="${usuario}">
-
-            <label>CPF</label>
-            <input type="text" name="cpf" th:field="*{cpf}" placeholder="Apenas Numeros">
-            <br>
-            
-            <input type="submit" value="Ver Reservas">
-        </form>
+                    <h1> Verifique as suas reservas:</h1>
+                    <form action="#"
+                        method="GET"
+                        th:action="@{/reserva/usuario}"
+                        th:object="${usuario}">
+                        <div id="inputLine">
+                            <label>CPF</label>
+                            <input class="text" type="text" name="cpf" th:field="*{cpf}" placeholder="Apenas Numeros">
+                        </div>
+                        <div id="inputLine">    
+                            <input class="button" type="submit" value="Ver Reservas">
+                        </div>
+                    </form>
 
 
-        <h2>Sobre as nossas salas:</h2>
-        
-        <table>
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Capacidade</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="salas : ${salas}">
-                    <td th:text="${salas.nome}"></td>
-                    <td th:text="${salas.capacidade}"></td>
-                </tr>
-            </tbody>
-        </table>
+                    <h1>Sobre as nossas salas:</h1>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Capacidade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="salas : ${salas}">
+                                <td th:text="${salas.nome}"></td>
+                                <td th:text="${salas.capacidade}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <p>Negócios S/A</p>
+    </div>
     </body>
 </html>

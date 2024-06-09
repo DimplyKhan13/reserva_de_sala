@@ -4,54 +4,78 @@
         <meta charset="UTF-8">
         <title>Disponibilidade - Reserva de Salas</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" th:href="@{/css/default.css}">
     </head>
     <body>
-        <h1>Disponibilidade</h1>
-        <h2>Reserva de Salas - Negócios S/A</h2>
+        <div id="header">
+            <h1>Disponibilidade</h1>
+            <h2><span>Negócios S/A</span> - Reserva de Salas</h2>
+        </div>
 
-        <span th:text="${error}"></span>
+        <div id="badAlerts">
+            <span th:text="${error}"></span>
+        </div>
 
-        <p>Qual sala você gostaria de reservar para <strong th:text="${disponibilidade.dia}"></strong> as <strong th:text="${disponibilidade.hora}"></strong>?</p>
-        <form action="#"
-            method="post"
-            th:action="@{/reserva/sala}"
-            th:object="${reserva}">
+        <div id="container">
+            <div id="inner">
+                <div id="content">
 
-            <select id="sala" name="sala" th:field="*{idSala}">
-                <option th:each="sala : ${salasDisponiveis}"
-                    th:value="${sala.id}"
-                    th:text="${sala.nome}">
-                </option>
-            </select>
-            <br>
-            <br>
-            
-            <label>CPF</label>
-            <input type="text" th:name="cpfUsuario" th:value="${disponibilidade.cpf}" readonly/>
-            <br>
+                    <h1>Escolha a sala que deseja reservar:</h1>
+                    
+                    <form action="#"
+                        method="post"
+                        th:action="@{/reserva/sala}"
+                        th:object="${reserva}">
 
-            <label>Dia e Hora</label>
-            <input type="text" th:name="dia" th:value="${disponibilidade.dia}" readonly/>
-            <input type="text" th:name="hora" th:value="${disponibilidade.hora}" readonly/>
-            <br>
+                        <div id="inputLine">
+                            <label>Sala</label>
+                            <select id="sala" name="sala" th:field="*{idSala}">
+                                <option th:each="sala : ${salasDisponiveis}"
+                                    th:value="${sala.id}"
+                                    th:text="${sala.nome}">
+                                </option>
+                            </select>
+                        </div>
 
-            <button type="submit">Reservar para o CPF <strong th:text="${disponibilidade.cpf}"></strong></button>
-        </form>
+                        <div id="inputLine">
+                            <label>CPF</label>
+                            <input class="text" type="text" th:name="cpfUsuario" th:value="${disponibilidade.cpf}" readonly/>
+                        </div>
+                        
+                        <div id="inputLine">
+                            <label>Dia e Hora</label>
+                            <input class="text" type="text" th:name="dia" th:value="${disponibilidade.dia}" readonly/>
+                            <input class="text" type="text" th:name="hora" th:value="${disponibilidade.hora}" readonly/>
+                        </div>
 
-        <p>Se preferir, veja mais informações sobre as salas disponíveis:</p>
-        <table>
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Capacidade</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="salasDisponiveis : ${salasDisponiveis}">
-                    <td th:text="${salasDisponiveis.nome}"></td>
-                    <td th:text="${salasDisponiveis.capacidade}"></td>
-                </tr>
-            </tbody>
-        </table>
+                        <div id="inputLine">
+                            <input class="button" type="submit" value="Reservar"></button>
+                        </div>
+
+                    </form>
+
+                    <p>Esta são as salas disponíveis para o dia e hora solicitados, com capacidade para atender todos os participantes:</p>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Capacidade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="salasDisponiveis : ${salasDisponiveis}">
+                                <td th:text="${salasDisponiveis.nome}"></td>
+                                <td th:text="${salasDisponiveis.capacidade}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div id="footer">
+            <p>Negócios S/A</p>
+        </div>
     </body>
 </html>

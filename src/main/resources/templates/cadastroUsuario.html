@@ -4,41 +4,61 @@
         <meta charset="UTF-8">
         <title>Cadastro - Reserva de Salas</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" th:href="@{/css/default.css}">
     </head>
     <body>
-        <h1>Cadastro</h1>
-        <h2>Reserva de Salas - Negócios S/A</h2>
+         
         
-        <p>Preencha o formulário a seguir com os seus dados.</p>
+        <div id="header">
+            <h1>Cadastro de Usuário</h1>
+            <h2><span>Negócios S/A</span> - Reserva de Salas</h2>
+        </div>
+          
         
-        <span th:text="${error}"></span>
+        <div id="badAlerts">
+            <span th:text="${error}"></span>
+        </div>
 
-        <form action="#"
-            method="post"
-            th:action="@{/usuario/cadastro}"
-            th:object="${usuario}">
+        <div id="container">
+            <div id="inner">
+                <div id="content">
+                    <h1>Preencha o formulário a seguir com os seus dados:</h1>
 
-            <label>Nome</label>
-            <input placeholder="Seu nome completo"
-                id="nome"
-                th:field="*{nome}">
-            <br>
-            <br>
+                    <form action="#"
+                        method="post"
+                        th:action="@{/usuario/cadastro}"
+                        th:object="${usuario}">
+                        
+                        <div id="inputLine">
+                            <label>Nome</label>
+                            <input class="text" placeholder="Seu nome completo"
+                                id="nome"
+                                th:field="*{nome}">
+                        </div>
 
-            <label>CPF</label>
-            <input placeholder="Apenas Numeros"
-                id="cpf"
-                th:field="*{cpf}">
-            <br>
-            <br>
+                        <div id="inputLine">
+                            <label>CPF</label>
+                            <input class="text" placeholder="Apenas Numeros"
+                                id="cpf"
+                                th:field="*{cpf}">
+                        </div>
 
-            <label>Contato</label>
-            <input placeholder="(xx)xxxxx-xxxx"
-                id="contato"
-                th:field="*{contato}">
+                        <div id="inputLine">
+                            <label>Contato</label>
+                            <input class="text" placeholder="(xx)xxxxx-xxxx"
+                                id="contato"
+                                th:field="*{contato}">
+                        </div>
+                        
+                        <input button class="button" type="submit" value="Criar Usuário">
+                    </form>
+                </div>
+            </div>
+        </div>
 
-            <input button type="submit" value="Cadastrar">
-        </form>
+        <div id="footer">
+            <p>Negócios S/A</p> 
+        </div>
 
     </body>
 </html>

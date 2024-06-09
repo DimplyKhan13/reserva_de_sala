@@ -1,0 +1,163 @@
+*{
+	margin:0;
+	padding:0;
+}
+
+body{
+	font:13px "Trebuchet MS", Verdana, Geneva, Arial, Helvetica, sans-serif;
+	color:#333;
+	background-color:#fff;
+}
+
+/*Header*/
+#header{
+	background-color:#333;
+	height:75px;
+	border-bottom:10px #dfdfdf solid;	
+}
+#header h1{
+	font:29px "Georgia", Times New Roman, Times, serif;
+	color:#fff;
+	padding:20px 0 0 50px;
+	letter-spacing:0.1em;
+}
+#header h2{
+	font:13px "Trebuchet MS", Verdana, Geneva, Arial, Helvetica, sans-serif;
+	color:#fff;
+	padding:0 0 0 50px;
+	letter-spacing:0.1em;
+}
+#header span{
+	color:#3399CC;
+}
+
+/*Content*/
+#container{
+  margin:10px 50px 0px 50px;
+  text-align:center;
+}
+#inner{
+  width: 100%;
+  padding: 0px;
+  text-align: left;
+  background-color: #fff;	
+  overflow: auto;
+}
+
+/*Alerts*/
+#goodAlerts{
+	color: green;
+}
+#badAlerts{
+	color: red;
+}
+
+/*Contennt*/
+#content{
+	margin:18px 0px 10px 10px;
+	border-left:1px #dfdfdf solid;
+	padding:0 0 0 10px;
+	line-height:22px;
+}
+
+/* Element Styles*/
+h1, h2, h3, h4, h5, h6{
+	color:#333;
+	padding:8px 0;
+}
+h1{
+	font-size:23px;
+}
+p{
+	margin:4px 0 10px 30px;
+	font-size:16px;
+}
+#container a{ 
+	color:#3399cc;
+	text-decoration:underline;
+}
+#container a:hover{
+	text-decoration:none;
+}
+
+/* Form Styles */
+form {
+	margin-left: 50px;
+}
+form label{
+	display:block;
+}
+form #inputLine{
+	margin-bottom: 10px;
+}
+form input.text, form textarea{
+	width:375px;
+	border:2px #dfdfdf solid;
+	color:#656565;
+	padding:4px 5px;
+	font:12px Verdana,Arial,san-serif;
+}
+form input.text:hover:read-write, form textarea:hover:read-write{
+	border:2px #656565 solid;
+}
+form input.text:focus:read-write, form textarea:focus:read-write{
+	border:2px #3399cc solid;
+	color:#333;
+}
+form input.button{
+	margin-left: 50px;
+	font:16px Verdana,Arial,san-serif;
+	background-color: #3399cc;
+	border: none;
+	color: white;
+	padding: 8px 16px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+}
+form input.button:hover{
+	background-color: #3366cc;
+}
+form select{
+	width:390px;
+	border:2px #dfdfdf solid;
+	color:#656565;
+	padding:4px 5px;
+	font:12px Verdana,Arial,san-serif;
+}
+form select:hover{
+	border:2px #656565 solid;
+}
+form select:focus{
+	border:2px #3399cc solid;
+	color:#333;
+}
+
+table {
+	border-collapse: collapse;
+	width: 40%;
+	margin: 10px 0 30px 50px;
+}
+
+th, td {
+	text-align: left;
+	padding: 8px;
+}
+
+tr:nth-child(even){background-color: #dfdfdf}
+
+th {
+	background-color: #3399CC;
+	color: white;
+}
+
+/*Footer*/
+#footer{
+	width: 100%;
+	bottom: 0;
+	margin-top: 20px;
+	background-color:#333;
+	border-top:10px #dfdfdf solid;
+	padding:5px 50px;
+	color:#fff;
+}
